@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import React from 'react';
-require('icons/morny.svg');
-require('icons/label.svg');
-require('icons/chart.svg');   //svgo-loader svg-sprite-loader
+import Icon from './Icon';
 
 const NavWrapper = styled.nav`
   box-shadow: 0 0 3px rgba(0,0,0,0.25);
@@ -32,21 +30,15 @@ const Nav = () => {
       <NavWrapper>
         <ul>
           <li>
-            <svg className="icon">
-              <use xlinkHref="#label"/>
-            </svg>
+            <Icon name="label"/>
             <Link to="/tags">标签</Link>
           </li>
           <li>
-            <svg className="icon">
-              <use xlinkHref="#morny"/>
-            </svg>
+            <Icon name="morny"/>
             <Link to="/money">记账</Link>
           </li>
           <li>
-            <svg className="icon">
-              <use xlinkHref="#chart"/>
-            </svg>
+            <Icon name="chart"/>
             <Link to="/statistics">统计</Link>
           </li>
         </ul>
