@@ -3,7 +3,7 @@ import React from 'react';
 //require一个目录怎么做？
 const importAll = (requireContext: __WebpackModuleApi.RequireContext) => requireContext.keys().forEach(requireContext);
 try {
-  importAll(require.context('/icons', true, /\.svg$/));
+  importAll(require.context('icons', true, /\.svg$/));
 } catch (error) {
   console.log(error);
 }
