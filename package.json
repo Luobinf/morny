@@ -54,6 +54,7 @@
     "react-app-polyfill": "^1.0.6",
     "react-dev-utils": "^10.2.1",
     "react-dom": "^16.13.1",
+<<<<<<< HEAD
     "react-router-dom": "^5.2.0",
     "resolve": "1.15.0",
     "resolve-url-loader": "3.1.1",
@@ -69,6 +70,11 @@
     "webpack-dev-server": "3.10.3",
     "webpack-manifest-plugin": "2.2.0",
     "workbox-webpack-plugin": "4.3.1"
+=======
+    "react-scripts": "3.4.1",
+    "styled-components": "^5.1.0",
+    "typescript": "~3.7.2"
+>>>>>>> 3752d2b74b69c0def5cfed7370cd71d0ee6cdfe8
   },
   "scripts": {
     "start": "node scripts/start.js",
@@ -91,6 +97,7 @@
     ]
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@types/styled-components": "^5.1.0",
     "@types/webpack-env": "^1.15.2",
     "svg-sprite-loader": "^5.0.0",
@@ -150,5 +157,8 @@
     "presets": [
       "react-app"
     ]
+=======
+    "@types/styled-components": "^5.1.0"
+>>>>>>> 3752d2b74b69c0def5cfed7370cd71d0ee6cdfe8
   }
 }
