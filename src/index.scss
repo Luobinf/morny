@@ -31,8 +31,15 @@ body {
 
 button {
   font-family: inherit;
+  border: none;
 }
 
 :focus {
   outline: none;
+}
+
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both;
 }
