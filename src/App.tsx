@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 import Tags from './pages/Tags';
-import Money from './pages/Money';
+import Money from './pages/Money/Money';
 import Statistics from './pages/Statistics';
 import NoMatch from './pages/NoMatch';
 import styled from 'styled-components';
