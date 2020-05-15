@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import React, {useState} from 'react';
 
-const TagSection = styled.section`
+const Wrapper = styled.section`
   background: #ffffff;
   padding: 16px;
   > ol {
@@ -11,6 +12,9 @@ const TagSection = styled.section`
       display: inline-block;
       padding: 3px 16px;
       margin: 8px 12px;
+      &.active {
+      background: #f60;
+      }
     }
   }
   > button {
@@ -22,5 +26,41 @@ const TagSection = styled.section`
     margin-top: 10px;
   }
 `;
+
+const TagSection: React.FunctionComponent = (props) => {
+  const [tags,setTags] = useState<string[]>(['衣','食','住','行']);
+  const [selectedTags,setSelectedTags] = useState<string[]>([]);
+  const handleAddTag = () => {
+    const tagName = window.prompt('新标签的名称为');
+    if(tagName !== null) {
+      setTags([...tags,tagName]);
+    }
+  };
+  const handleToggleTag = (tag: string) => {
+    if(selectedTags.indexOf(tag) >= 0) {
+      setSelectedTags(selectedTags.filter( t => t !== tag));
+    } else {
+      setSelectedTags([...selectedTags,tag]);
+    }
+  };
+  return (
+    <Wrapper>
+      <ol>
+        {
+          tags.map(tag =>
+            <li
+              key={tag}
+              onClick={() => {handleToggleTag(tag)}}
+              className={selectedTags.indexOf(tag) >=0 ? 'active' : ''}
+            >
+              {tag}
+            </li>
+          )
+        }
+      </ol>
+      <button onClick={handleAddTag}>新增标签</button>
+    </Wrapper>
+  );
+};
 
 export default TagSection;
