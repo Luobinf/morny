@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import React, {useState} from 'react';
+import generateOutput from './generateOutput';
 
-const NumberPadSection = styled.section`
+const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   > .output {
@@ -48,4 +50,51 @@ const NumberPadSection = styled.section`
   }
 `;
 
+const NumberPadSection = () => {
+  const [output,_setOutput] = useState('100');
+  const setOutput = (output: string) => {
+    if(output.length > 16) {
+      _setOutput(output.slice(0,16));
+    } else if(output.length === 0) {
+      _setOutput('0');
+    }
+    _setOutput(output);
+  };
+  const pad = [1,2,3,'删除',4,5,6,'清空',7,8,9,'OK',0,'.'];
+  const handleButton = (e: React.MouseEvent<HTMLDivElement>) => {
+    const text = (e.target as HTMLButtonElement).textContent;
+    if(text === null) return;
+    if(text === 'OK') {
+      return;
+    }
+    if('0123456789.'.split('').concat(['删除','清空']).indexOf(text) >= 0) {
+      console.log(text)
+      setOutput(generateOutput(text,output));
+      console.log(generateOutput(text,output));
+    }
+  };
+  return (
+    <Wrapper>
+      <div className="output">
+        {output}
+      </div>
+      <div className="pad clearfix " onClick={handleButton}>
+        {
+          pad.map(p => {
+            if(p === 'OK') {
+              return <button className="ok">OK</button>
+            }
+            if(p === 0) {
+              return <button className="zero">0</button>
+            }
+            if(p === '.') {
+              return <button className="dot">.</button>
+            }
+            return  <button>{p}</button>
+          })
+        }
+      </div>
+    </Wrapper>
+  );
+};
 export default NumberPadSection;

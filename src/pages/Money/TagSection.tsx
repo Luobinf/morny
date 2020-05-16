@@ -24,6 +24,7 @@ const Wrapper = styled.section`
     border-bottom: 1px solid #333;
     color: #666;
     margin-top: 10px;
+    
   }
 `;
 

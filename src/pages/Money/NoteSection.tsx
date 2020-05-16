@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import React, {useRef, useState} from 'react';
 
-const NoteSection = styled.section`
+const Wrapper = styled.section`
   background: #f5f5f5;
   padding: 0 16px;
   > label {
@@ -19,5 +20,30 @@ const NoteSection = styled.section`
     }
   }
 `;
+
+const NoteSection: React.FunctionComponent = () => {
+  const [note,setNote] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
+  const handleChange = () => {
+    if(inputRef.current !== null) {
+      setNote(inputRef.current.value);
+      console.log(note)
+    }
+  };
+  return (
+    <Wrapper>
+      <label>
+        <span>备注</span>
+        <input
+          type="text"
+          placeholder="在这里输入备注"
+          defaultValue={note}
+          ref={inputRef}
+          onChange={handleChange}
+        />
+      </label>
+    </Wrapper>
+  );
+};
 
 export default NoteSection;
