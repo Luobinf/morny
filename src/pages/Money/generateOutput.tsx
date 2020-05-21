@@ -22,13 +22,12 @@ const generateOutput = (text:string, output = '0') => {
         return output.slice(0, -1) || '';
       }
     case '清空':
-      return '0';
+      return '';
     case '.':
-      if(output.indexOf('.') === -1) {
-        return
-          ;
+      if(output.indexOf('.') >= 0) {
+        return output;
       } else {
-        console.log(output + 'p');
+        // console.log(output + 'p');
         return output + '.';
       }
     default:

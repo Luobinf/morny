@@ -63,14 +63,14 @@ const NumberPadSection = () => {
   const pad = [1,2,3,'删除',4,5,6,'清空',7,8,9,'OK',0,'.'];
   const handleButton = (e: React.MouseEvent<HTMLDivElement>) => {
     const text = (e.target as HTMLButtonElement).textContent;
+    console.log(text);
     if(text === null) return;
     if(text === 'OK') {
       return;
     }
     if('0123456789.'.split('').concat(['删除','清空']).indexOf(text) >= 0) {
-      console.log(text)
+      // console.log(text)
       setOutput(generateOutput(text,output));
-      console.log(generateOutput(text,output));
     }
   };
   return (
