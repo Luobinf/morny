@@ -14,28 +14,22 @@ function Money() {
     category: '-' as Category,
     amount: 0
   });
+  const onChange = (obj: Partial <typeof selected>) => {
+    setSelected({
+      ...selected, //useState和setState是不一样的不会合并之前的数据
+      ...obj
+    })
+  };
   return (
     <Layout>
       {selected.tags.join(',')}
       {selected.note}
       {selected.category}
       {selected.amount}
-      <TagSection value={selected.tags} onChange={ (tags) => setSelected({
-        ...selected,   //useState和setState是不一样的不会合并之前的数据
-        tags: tags
-      })}/>
-      <NoteSection value={selected.note} onChange={(note) => setSelected({
-        ...selected,
-        note: note
-      })}/>
-      <CategorySection value={selected.category} onChange={(category) => setSelected({
-        ...selected,
-        category
-      })}/>
-      <NumberPadSection value={selected.amount} onChange={(amount) => setSelected({
-        ...selected,
-        amount
-      })} onOk={() => {}}
+      <TagSection value={selected.tags} onChange={(tags) => onChange({tags})}/>
+      <NoteSection value={selected.note} onChange={(note) => onChange({note})}/>
+      <CategorySection value={selected.category} onChange={(category) => onChange({category})}/>
+      <NumberPadSection value={selected.amount} onChange={(amount) => onChange({amount})} onOk={() => {}}
       />
     </Layout>
   );
