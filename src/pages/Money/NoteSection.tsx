@@ -21,13 +21,19 @@ const Wrapper = styled.section`
   }
 `;
 
-const NoteSection: React.FunctionComponent = () => {
-  const [note,setNote] = useState('');
+type Props = {
+  value: string,
+  onChange: (note: string) => void
+}
+
+const NoteSection: React.FunctionComponent<Props> = (props) => {
+  // const [note,setNote] = useState('');
+  const note = props.value;
   const inputRef = useRef<HTMLInputElement>(null);
   const handleChange = () => {
     if(inputRef.current !== null) {
-      setNote(inputRef.current.value);
-      console.log(note)
+      props.onChange(inputRef.current.value);
+      // console.log(note);
     }
   };
   return (

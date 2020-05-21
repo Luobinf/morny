@@ -50,15 +50,25 @@ const Wrapper = styled.section`
   }
 `;
 
-const NumberPadSection = () => {
-  const [output,_setOutput] = useState('100');
+type Props = {
+  value: number,
+  onChange: (value: number) => void,
+  onOk: () => void
+}
+
+const NumberPadSection: React.FC<Props> = (props) => {
+  // const [output,_setOutput] = useState(props.value.toString());
+  const output = props.value.toString();
+  let value;
   const setOutput = (output: string) => {
     if(output.length > 16) {
-      _setOutput(output.slice(0,16));
+      value = parseFloat(output.slice(0,16));
     } else if(output.length === 0) {
-      _setOutput('0');
+      value = 0;
+    } else {
+      value = parseFloat(output);
     }
-    _setOutput(output);
+    props.onChange(value);
   };
   const pad = [1,2,3,'删除',4,5,6,'清空',7,8,9,'OK',0,'.'];
   const handleButton = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -66,6 +76,7 @@ const NumberPadSection = () => {
     console.log(text);
     if(text === null) return;
     if(text === 'OK') {
+      props.onOk();
       return;
     }
     if('0123456789.'.split('').concat(['删除','清空']).indexOf(text) >= 0) {
