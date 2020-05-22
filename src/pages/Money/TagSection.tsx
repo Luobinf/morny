@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React, {useState} from 'react';
-import {useTags} from '../../useTags';
+import {useTags} from '../../lib/useTags';
+import {createId} from '../../lib/createId';
 
 const Wrapper = styled.section`
   background: #ffffff;
@@ -42,7 +43,7 @@ const TagSection: React.FunctionComponent<Props> = (props) => {
     const tagName = window.prompt('新标签的名称为');
     if(tagName !== null) {
       setTags([...tags,{
-        id: Math.random(),
+        id: createId(),
         name: tagName
       }]);
     }
