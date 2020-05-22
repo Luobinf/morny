@@ -30,25 +30,28 @@ const Wrapper = styled.section`
 `;
 
 type Props = {
-  value: string [],
-  onChange: (selected: string[]) => void
+  value: number [],
+  onChange: (selected: number[]) => void
 }
 
 const TagSection: React.FunctionComponent<Props> = (props) => {
   // const [tags,setTags] = useState<string[]>(['衣','食','住','行']);
   const {tags,setTags} = useTags();
-  const selectedTags = props.value;
+  const selectedTagIds = props.value;
   const handleAddTag = () => {
     const tagName = window.prompt('新标签的名称为');
     if(tagName !== null) {
-      setTags([...tags,tagName]);
+      setTags([...tags,{
+        id: Math.random(),
+        name: tagName
+      }]);
     }
   };
-  const handleToggleTag = (tag: string) => {
-    if(selectedTags.indexOf(tag) >= 0) {
-      props.onChange(selectedTags.filter( t => t !== tag));
+  const handleToggleTag = (tagId: number) => {
+    if(selectedTagIds.indexOf(tagId) >= 0) {
+      props.onChange(selectedTagIds.filter(t => t !== tagId));
     } else {
-      props.onChange([...selectedTags,tag]);
+      props.onChange([...selectedTagIds,tagId]);
     }
   };
   return (
@@ -57,11 +60,11 @@ const TagSection: React.FunctionComponent<Props> = (props) => {
         {
           tags.map(tag =>
             <li
-              key={tag}
-              onClick={() => {handleToggleTag(tag)}}
-              className={selectedTags.indexOf(tag) >=0 ? 'active' : ''}
+              key={tag.id}
+              onClick={() => {handleToggleTag(tag.id)}}
+              className={selectedTagIds.indexOf(tag.id) >=0 ? 'active' : ''}
             >
-              {tag}
+              {tag.name}
             </li>
           )
         }
