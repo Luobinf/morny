@@ -44,7 +44,7 @@ const Space = styled.div`
 
 function Tags() {
   const {tags} = useTags();
-  console.log(tags)
+  // console.log(tags);
   // debugger
   return (
     <Layout>
