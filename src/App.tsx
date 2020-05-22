@@ -6,11 +6,12 @@ import {
   Redirect
 } from 'react-router-dom';
 
-import Tags from './pages/Tags';
+import Tags from './pages/Tags/Tags';
 import Money from './pages/Money/Money';
 import Statistics from './pages/Statistics';
 import NoMatch from './pages/NoMatch';
 import styled from 'styled-components';
+import {TagEdit} from './pages/Tags/TagEdit';
 
 const AppWrapper = styled.div`
   color: #333;
@@ -24,6 +25,9 @@ function App() {
           <Route path="/tags" exact>
             <Tags/>
           </Route>
+          <Route path="/tags/:tag" exact>
+            <TagEdit/>
+          </Route>
           <Route path="/money" exact>
             <Money/>
           </Route>
@@ -33,7 +37,7 @@ function App() {
           <Route exact path="/">
             <Redirect to="/tags"/>
           </Route>
-          <Route path="*" exact>
+          <Route path="*">
             <NoMatch/>
           </Route>
         </Switch>
