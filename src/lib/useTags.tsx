@@ -21,16 +21,23 @@ const useTags = () => {
     return tagIndex;
   };
   const updateTag = (id: number,obj: {name: string}) => {
-    let tagIndex = findTagIndex(id);
-    const deepCloneTags = JSON.parse(JSON.stringify(tags)); //React不推荐直接修改原有的数据
-    deepCloneTags.splice(tagIndex,1,{id:id,name: obj.name});
-    setTags(deepCloneTags);
+    // let tagIndex = findTagIndex(id);
+    // const deepCloneTags = JSON.parse(JSON.stringify(tags)); //React不推荐直接修改原有的数据
+    // deepCloneTags.splice(tagIndex,1,{id:id,name: obj.name});
+    // setTags(deepCloneTags);
+    setTags(tags.map(tag => {
+      if(tag.id === id) {
+        return {
+          id,
+          name: obj.name
+        };
+      } else {
+        return tag;
+      }
+    }));
   };
   const deleteTag = (id: number) => {
-    let tagIndex = findTagIndex(id);
-    const deepCloneTags = JSON.parse(JSON.stringify(tags));
-    deepCloneTags.splice(tagIndex,1);
-    setTags(deepCloneTags);
+    setTags(tags.filter( tag => tag.id !== id));  //filter返回一个新的数组
   };
 
   return {
