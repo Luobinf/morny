@@ -24,9 +24,37 @@ const InputWrapper = styled.div`
 `;
 
 const TagEdit: React.FC = () => {
-  const { tags, updateTag } = useTags();
+  const { tags, updateTag, deleteTag } = useTags();
   let { id } = useParams();  //id为string类型
   let tag = tags.filter(tag => tag.id === parseInt(id))[0];
+  const tagContent = (tag: {id: number,name: string}) => {
+    return (
+      <div>
+        <InputWrapper>
+          <Input
+            label="标签名"
+            type="text" placeholder="标签名"
+            value={tag.name}
+            onChange={ (e) => {
+              updateTag(tag.id,{name: e.target.value});
+            }}
+          />
+        </InputWrapper>
+        <Center>
+          <Space/>
+          <Button onClick={() => deleteTag(tag.id)}>删除标签</Button>
+          <Space/>
+        </Center>
+      </div>
+    )
+  };
+  const tagNotExist = (
+    <Center>
+      <Space/>
+      <div>tag 不存在</div>
+      <Space/>
+    </Center>
+  );
   return (
     <Layout>
       <Topbar>
@@ -34,21 +62,9 @@ const TagEdit: React.FC = () => {
         <span>编辑标签</span>
         <Icon />
       </Topbar>
-      <InputWrapper>
-        <Input
-          label="标签名"
-          type="text" placeholder="标签名"
-          value={tag.name}
-          onChange={ (e) => {
-            updateTag(tag.id,{name: e.target.value});
-          }}
-        />
-      </InputWrapper>
-      <Center>
-        <Space/>
-        <Button>删除标签</Button>
-        <Space/>
-      </Center>
+      {
+        tag ? tagContent(tag) : tagNotExist
+      }
     </Layout>
   );
 };
