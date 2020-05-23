@@ -10,10 +10,15 @@ const defaultTags = [
 //自定义hook
 const useTags = () => {
   const [tags,setTags] = useState<{ id: number,name: string}[]>(defaultTags);
+  const findTag = (id: number) => tags.filter(tag => tag.id === id)[0];
+  const updateTag = (id: number,obj: {name: string}) => {
+    const tag = findTag(id);
+  };
   return {
     tags,
-    setTags
-  }
+    setTags,
+    findTag
+  };
 };
 
 export {useTags};
