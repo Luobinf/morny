@@ -24,9 +24,7 @@ const InputWrapper = styled.div`
 `;
 
 const TagEdit: React.FC = () => {
-  const { tags, setTags } = useTags();
-  console.log(tags);
-  console.log('tags');
+  const { tags, updateTag } = useTags();
   let { id } = useParams();  //id为string类型
   let tag = tags.filter(tag => tag.id === parseInt(id))[0];
   return (
@@ -42,20 +40,7 @@ const TagEdit: React.FC = () => {
           type="text" placeholder="标签名"
           value={tag.name}
           onChange={ (e) => {
-            let t = tags.map(item => {
-              if(item.id === tag.id) {
-                item.name = e.target.value;
-                return item;
-              } else {
-                return item;
-              }
-            });
-            console.log(90);
-            console.log(t);
-            console.log(tags);
-            console.log(90);
-            // debugger;
-            setTags(t);
+            updateTag(tag.id,{name: e.target.value});
           }}
         />
       </InputWrapper>
