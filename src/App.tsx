@@ -35,7 +35,7 @@ function App() {
             <Statistics/>
           </Route>
           <Route exact path="/">
-            <Redirect to="/tags"/>
+            <Redirect to="/tags" exact />
           </Route>
           <Route path="*">
             <NoMatch/>
